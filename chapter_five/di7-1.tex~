@@ -1,0 +1,194 @@
+\documentclass[10pt,xcolor=dvipsnames,hyperref={CJKbookmarks=true}]{beamer}
+\usepackage{listings}
+\lstset{language=R}
+\usepackage{picins}
+\usepackage{colortbl}
+\usepackage{comment}
+\usepackage[space,noindent]{ctex}
+\usecolortheme[named=Brown]{structure}
+\setbeamertemplate{items}{ball}
+\setbeamertemplate{blocks}[rounded][shadow=true]
+\usetheme{%AnnArbor}
+  % Hannover}
+ Warsaw}
+%\usecolortheme{lily}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{color,xcolor,fancybox}
+\usepackage{graphicx,wrapfig}
+\usepackage{manfnt}
+\usepackage{multicol,array}
+\usepackage{subfig,cases}
+%\usepackage{algorithm}
+%\usepackage{algorithmic}
+% \usepackage[timeinterval=1]{tdclock}
+\setbeamertemplate{theorems}[numbered]%解决例题 定理编号问题
+\setbeamertemplate{caption}[numbered]%解决图片和表格的编号问题
+% ======================= 标题名称中文化 ============================%
+\newtheorem{dingyi}{\heiti 定义~}
+\newtheorem{dingli}{\heiti 定理~}[section]
+\newtheorem{yinli}{\heiti 引理~}[dingli]
+\newtheorem{tuilun}{\heiti 推论~}[dingli]
+\newtheorem{mingti}{\heiti 命题~}[dingli]
+\newtheorem{liti}{\heiti 例~}[section]
+\setbeamercolor{normal text}{bg=black!10}
+\newcommand{\bl}[1]{\textcolor{blue}{#1}}
+\newcommand{\slie}[2]{$#1_1,#1_2,\dots,#1_{#2}$}
+\newcommand{\wslie}[1]{$#1_1,#1_2,\dots$}
+\newcommand{\hkhao}[1]{\{#1\}}
+\newcounter{bianhao}
+\newcommand{\bianh}{\stepcounter{bianhao}\textbf{\thebianhao}}
+\def\uR{\mathbf{R}}
+\def\ue{\mathrm{e}}
+\def\ud{\mathrm{d}}
+\begin{document}
+\kaishu
+\title[]{ 参数估计---点估计}
+\subtitle{概率论与数理统计}
+\author{陈\ \  放}
+\institute{中山大学南方学院}
+\date{\today}
+\logo{\includegraphics[width=0.5cm]{Nanfang_College_.jpg}}
+\titlegraphic{\includegraphics[height=0.15\textwidth]{Nanfang_College_.jpg}}
+% 插入学校的徽章
+\begin{frame}
+  \titlepage
+\end{frame}
+\begin{frame}
+  \frametitle{主要内容}
+  \tableofcontents[pausesections]
+\end{frame}
+
+\section{矩估计}
+
+\begin{frame}[c]
+\begin{exampleblock}{参数统计背景介绍}
+  
+  在参数统计中，我们总假设已知总体分布的类型，但是总体分布中还有一些参
+  数未知.现在摆在我们面前的问题是：“得到该总体一个样本后，我们如何得到
+  总体中这些未知参数.”
+
+  \textbf{求未知参数的方法:}一、列方程求解；二、找一个函数求最优解.
+\end{exampleblock}
+\end{frame}
+\begin{frame}
+  \frametitle{矩估计}
+  \begin{exampleblock}{矩估计的思想}
+    矩估计是由K.皮尔逊发明，他是一个哲学博士后来喜欢上统计学，由其背景
+    可知矩估计的想法很简单---就是有几个未知量我们就想办法列几个方程就
+    行了.矩估计列方程的理论依据就是大数定理:样本均值和总体期望可以无限
+    靠近\[P \left\{ \left|
+        \sum\limits_{i=1}^nX_i^m/n-E(X^m) \right|>\epsilon \right\}\rightarrow 0\]
+  \end{exampleblock}
+  \end{frame}
+  \begin{frame}
+    \frametitle{两点分布参数$p$的估计}
+    \begin{liti}
+      设$X\sim B(1,p)$,其中$p$是事件A发生的概率，\slie{x}{n}是其一个独立同分布样本，$x_i=
+      \begin{cases}
+        1,& \mbox{A发生},\\
+        0,& \mbox{不发生}.
+      \end{cases}
+$求
+      $p$的估计值.
+    \end{liti}
+    \textbf{解\quad}对于两点分布只有一个参数$p$，我们只需列一个方程就
+    可以了，令\[\frac{\sum\limits_{i=1}^nx_i}{n}=E(X)=p\]
+    \textbf{解得}，\[
+    \hat{p}=\frac{\sum\limits_{i=1}^nx_i}{n}=\frac{m}{n}\]
+  \end{frame}
+  \begin{frame}
+    \frametitle{泊松分布参数$\lambda$矩估计}
+    \begin{liti}
+      设总体的分布为泊松分布$P(\lambda),$\slie{X}{n}为从该总体抽取的样
+      本.试估计$\lambda$的值.
+    \end{liti}
+    \textbf{解\quad}根据题意可得$E(X)=\lambda$,有大数定理得：
+    \[\frac{ \sum\limits_{i=1}^nX_i }{n} \approx \lambda\]
+    所以\[ \hat{\lambda}=\frac{ \sum\limits_{i=1}^nX_i }{n}\]
+  \end{frame}
+  \begin{frame}
+    \frametitle{指数分布参数$\lambda$ 的矩估计}
+        \begin{liti}
+      设总体的分布为指数分布$E(\lambda),$\slie{X}{n}为从该总体抽取的样
+      本.试估计$\lambda$的值.
+    \end{liti}
+    \textbf{解\quad}根据题意可得$E(X)=\frac{1}{\lambda}$,有大数定理得：
+    \[\frac{ \sum\limits_{i=1}^nX_i }{n} \approx \frac{1}{\lambda}\]
+    所以\[ \hat{\lambda}=\frac{ n }{\sum\limits_{i=1}^nX_i}\]
+  \end{frame}
+  \begin{frame}
+    \frametitle{正态分布参数 矩估计}
+    \begin{liti}
+      设总体为均值为$\mu$，方差为$\sigma^2$的正态分布，
+      $X_1,X_2,\cdots,X_n$是从该总体抽取的一个iid样本，试求
+      $\mu,\sigma^2$的估计值.
+    \end{liti}
+    \textbf{解\quad }本题有两个未知参数，因此我们需要列两个方程，
+    已知$E(X)=\mu,E(X^2)=\sigma^2+\mu^2$，由大数定理可得，
+    \begin{equation}
+\label{eq:1}
+\begin{split}
+\overline{X}=  \sum\limits_{i=1}^nX_i=&\mu\\
+\overline{X^2}=\sum\limits_{i=1}^nX_i^2=&\sigma^2+\mu^2\\
+\mbox{故}\quad \hat{\mu}=& \overline{X}\\
+\mbox{把$\hat{\mu}$嵌入可得} \hat{\sigma^2}=& \overline{X^2}-\overline{X}^2
+\end{split}
+\end{equation}
+  \end{frame}
+  \begin{frame}
+    \frametitle{均匀分布参数的矩估计}
+    \begin{liti}
+      设$X_1,X_2,\cdots ,X_n$是定义在$[a,b]$上的均匀分布的一个样本，试
+      导出$a$和$b$的矩估计.
+    \end{liti}
+  \end{frame}
+
+\section{极大似然估计}
+\begin{frame}
+  \frametitle{极大似然估计的思想方法}
+  \begin{block}{Fisher轶事}
+    英国统计学家和遗传学家。1890年2月17日生于伦敦,1962年7月29日卒于澳大利亚阿德莱德。1912年毕业于剑桥大学数学系，后随英国数理统计学家J.琼斯进修了一年统计力学。他担任过中学数学教师，1918年任罗坦斯泰德农业试验站统计试验室主任。1933年，因为在生物统计和遗传学研究方面成绩
+卓著而被聘为伦敦大学优生学教授。1943年任剑桥大学遗传学教授。1957年退休。1959年去澳大利亚，在联邦科学和工业研究组织的数学统计部作研究工作。
+  \end{block}
+\end{frame}
+\begin{frame}
+  \frametitle{极大似然方法的思想}
+  由于Fisher的数学功底相当深厚，多元随机向量在他看来都是非常直观的，他
+  首先从样本$X_1,X_2,\cdots,X_n$构成的随机向量的联合密度研究，
+  \[L(x_1,x_2,\cdots,x_n;\theta_1,\thenta_2,\cdots,\theta_n)=\Pi\limits_{i=1}^{}\]
+\end{frame}
+\begin{frame}
+  \frametitle{极大似然方法举例}
+  
+\end{frame}
+\begin{frame}
+  \frametitle{极大似然估计举例}
+  
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{小结}
+  本讲介绍了大数定理、中心极限定理和棣莫弗--拉普拉斯定理,同时我们针对
+  每个定理都设计了一些相应的应用题，希望大家在做题的过程中体会这三个定
+  理的重要性.
+\end{frame}
+\begin{frame}
+  \frametitle{作业}
+  \begin{block}{习题5}
+5.1、5.3
+  \end{block}
+\end{frame}
+\begin{frame}
+  \frametitle{再见}
+\centering{ \Huge{\emph{Thanks!}}}
+  
+\end{frame}
+
+\end{document}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

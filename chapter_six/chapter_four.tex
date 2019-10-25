@@ -1,0 +1,147 @@
+\documentclass[10pt,xcolor=dvipsnames,hyperref={CJKbookmarks=true}]{beamer}
+\usepackage{listings}
+\lstset{language=R}
+\usepackage{picins}
+\usepackage{colortbl}
+\usepackage{comment}
+\usepackage[space,noindent]{ctex}
+\usecolortheme[named=Brown]{structure}
+\setbeamertemplate{items}{ball}
+\setbeamertemplate{blocks}[rounded][shadow=true]
+\usetheme{%AnnArbor}
+  % Hannover}
+ Warsaw}
+%\usecolortheme{lily}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{color,xcolor,fancybox}
+\usepackage{graphicx,wrapfig}
+\usepackage{manfnt}
+\usepackage{multicol,array}
+\usepackage{subfig,cases}
+%\usepackage{algorithm}
+%\usepackage{algorithmic}
+% \usepackage[timeinterval=1]{tdclock}
+\setbeamertemplate{theorems}[numbered]%解决例题 定理编号问题
+\setbeamertemplate{caption}[numbered]%解决图片和表格的编号问题
+% ======================= 标题名称中文化 ============================%
+\newtheorem{dingyi}{\heiti 定义~}
+\newtheorem{dingli}{\heiti 定理~}[section]
+\newtheorem{yinli}{\heiti 引理~}[dingli]
+\newtheorem{tuilun}{\heiti 推论~}[dingli]
+\newtheorem{mingti}{\heiti 命题~}[dingli]
+\newtheorem{liti}{\heiti 例~}[section]
+\setbeamercolor{normal text}{bg=black!10}
+\newcommand{\bl}[1]{\textcolor{blue}{#1}}
+\newcommand{\slie}[2]{$#1_1,#1_2,\dots,#1_{#2}$}
+\newcommand{\wslie}[1]{$#1_1,#1_2,\dots$}
+\newcommand{\hkhao}[1]{\{#1\}}
+\newcounter{bianhao}
+\newcommand{\bianh}{\stepcounter{bianhao}\textbf{\thebianhao}}
+\def\uR{\mathbf{R}}
+\def\ue{\mathrm{e}}
+\def\ud{\mathrm{d}}
+\begin{document}
+\kaishu
+\title[]{ 第四章~ 抽样方法与抽样分布}
+\subtitle{数量方法（二）}
+\author{陈\ \  放}
+\institute{中山大学南方学院}
+\date{\today}
+\logo{\includegraphics[width=0.5cm]{Nanfang_College_.jpg}}
+\titlegraphic{\includegraphics[height=0.15\textwidth]{Nanfang_College_.jpg}}
+% 插入学校的徽章
+\begin{frame}
+  \titlepage
+\end{frame}
+\begin{frame}
+  \frametitle{主要内容}
+  \tableofcontents[pausesections]
+\end{frame}
+
+\section{抽样的作用与抽样方法}
+
+\subsection{抽样中的基本概念}
+
+\begin{frame}[c]
+  \frametitle{抽样推断}
+\begin{block}{数量方法这一课程要求从数量角度去认识客观世界，从大量的数据中寻找事物之间的联系和发展规律，从而得出有助于决策的结论并指导实践}
+  
+\begin{enumerate}
+\item\label{item:1} 研究范围较小；
+\item\label{item:2} 研究范围较广.
+\end{enumerate}
+\end{block}
+\begin{liti}
+  要检验一批灯泡的是用寿命，由于测试是破坏性的，不可能做全面检测。只能抽取一部分灯泡做试验，据此来推断该批灯泡的平均使用寿命。
+\end{liti}
+\end{frame}
+
+\begin{frame}[c]
+  \frametitle{抽样推断}
+  \begin{liti}
+    某个企业在电视台做了广告，想要了解看电视的人有多少比例的人看了该广告并留下了印象，显然不可能对所有的电视观众去做调查
+  \end{liti}
+  \begin{liti}
+    某公司要推出一种新饮料，需要对消费者的喜好做调查，首先必须弄清那些人是消费对象，即使弄清了消费对象也不可能逐个人去调查。
+  \end{liti}
+  \begin{block}{定义}
+    抽样推断是从研究对象的全部单元中抽取一部分单元进行调查研究取得数据，并从这些数据中获取信息，以此来推断全体。
+  \end{block}
+\end{frame}
+
+\begin{frame}[c]
+  \frametitle{总体}
+  \begin{block}{总体}
+    在统计学中把研究对象某个数量指标值的全体称作总体。（也有把研究对象的全体称为总体）
+  \end{block}
+  \begin{alertblock}{问题}
+ 前面几个例题中的总体分别是什么？    
+  \end{alertblock}
+\end{frame}
+
+
+
+
+\subsection{抽样的作用}
+
+
+\subsection{概率抽样方法}
+
+\section{抽样中经常遇到的问题}
+
+
+\section{抽样中的三种分布和中心极限定理}
+\label{sec:three_distribution}
+
+\section{一些常用的抽样分布}
+\label{sec:normal_sample_distribution}
+
+\section{几个重要的小样本抽样分布}
+\label{sec:small_sample_distribution}
+
+
+
+
+
+
+
+
+\begin{frame}
+  \frametitle{小结}
+本次课主要将解点估计包括矩估计和极大似然估计，大家要掌握这两种估计的方
+法和哲学思想,同时学会计算点估计.
+\end{frame}
+
+\begin{frame}
+  \frametitle{再见}
+\centering{ \Huge{\emph{Thanks!}}}
+  
+\end{frame}
+
+\end{document}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
